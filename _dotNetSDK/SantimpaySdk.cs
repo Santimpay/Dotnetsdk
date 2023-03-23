@@ -1,5 +1,4 @@
 ﻿using _dotNetSDK;
-using Jose;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-
 using System.Net.Http.Headers;
 using System.Reflection.PortableExecutable;
 using System.Runtime.Intrinsics.X86;
@@ -37,7 +35,7 @@ namespace _dotNetSDK
             this.merchantId = merchantId;
         }
 
-        // 
+        // to encrypt the private key with EC
       private static ECDsa GetEllipticCurveAlgorithm(string privateKey)
         {
             var keyParams = (ECPrivateKeyParameters)PrivateKeyFactory
@@ -136,17 +134,10 @@ namespace _dotNetSDK
             response = await client.SendAsync(request);
              responsbody = await response.Content.ReadAsStringAsync();
 
-            
+           Console.WriteLine(responsbody);
+ }
 
-                Console.WriteLine(responsbody);
-
-
-             
-        }
-
-
-
-       static async Task Main(string[] args)
+ static async Task Main(string[] args)
         {
             string PRIVATE_KEY =  "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8NqhG3CnShfpfwVN" +
                                    "EsN6gd8EWqt4+pHaQKNDrxFY+M2hRANCAASEtRLC6DPwemVTxf7FSskiu/p1EZ9n" +
@@ -166,14 +157,11 @@ namespace _dotNetSDK
             // custom ID used by merchant to identify the payment
             string id = "1";
 
-            
-
-            SantimpaySdk Client = new SantimpaySdk(GATEWAY_MERCHANT_ID, SANTIMPAY_GATEWAY_TOKEN, PRIVATE_KEY);
+           SantimpaySdk Client = new SantimpaySdk(GATEWAY_MERCHANT_ID, SANTIMPAY_GATEWAY_TOKEN, PRIVATE_KEY);
 
            var token = Client.generateSignedToken("1", "coffee");
-
-
-            try
+     
+           try
             {
                 await Client.generatePaymentUrl(id, "1", "coffee", successRedirectUrl, failureRedirectUrl, notifyUrl);
                
@@ -189,6 +177,7 @@ namespace _dotNetSDK
     }
     
     //a data model for the requestbody
+    
     public class Datasend
     {
         public string id { get; set; }
