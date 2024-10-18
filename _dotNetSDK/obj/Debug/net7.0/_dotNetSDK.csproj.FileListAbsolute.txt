@@ -35,3 +35,40 @@ C:\Users\Dell Admin\source\repos\_dotNetSDK\_dotNetSDK\bin\Debug\net7.0\Swashbuc
 C:\Users\Dell Admin\source\repos\_dotNetSDK\_dotNetSDK\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Dell Admin\source\repos\_dotNetSDK\_dotNetSDK\obj\Debug\net7.0\_dotNetSDK.csproj.CopyComplete
 C:\Users\Dell Admin\source\repos\_dotNetSDK\_dotNetSDK\bin\Debug\net7.0\jose-jwt.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\_dotNetSDK.exe
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\_dotNetSDK.deps.json
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\_dotNetSDK.runtimeconfig.json
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\_dotNetSDK.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\_dotNetSDK.pdb
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\jose-jwt.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Scrutor.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.csproj.AssemblyReference.cache
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.AssemblyInfoInputs.cache
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.AssemblyInfo.cs
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.csproj.Up2Date
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\refint\_dotNetSDK.dll
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.pdb
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\_dotNetSDK.genruntimeconfig.cache
+C:\Users\pc\Desktop\Santimpay\DotnetSDKnew\_dotnetsdk\obj\Debug\net7.0\ref\_dotNetSDK.dll

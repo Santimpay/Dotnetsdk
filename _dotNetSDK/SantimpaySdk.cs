@@ -62,11 +62,17 @@ namespace _dotNetSDK
            
             var handler = new JsonWebTokenHandler();
 
-            string GATEWAY_MERCHANT_ID = "9e2dab64-e2bb-4837-9b85-d855dd878d2b";
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
 
-            var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8NqhG3CnShfpfwVN" +
-                    "EsN6gd8EWqt4+pHaQKNDrxFY+M2hRANCAASEtRLC6DPwemVTxf7FSskiu/p1EZ9n" +
-                     "pWGNXGhRkun7mSDzNr+Xx+0PIwg+KjBC9VGnwQ3h8gjeB31EZyF92hwU" ;
+            var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQguL/LFhkFaMVbqJeP" +
+                     "vJ8N8oU98NQDBAY1WGc86ILT3tGhRANCAASqu+J41pkzEuCuznm4/Fnd9ZKwD7+z" +
+                     "tIupn5uBB+RJLrm7fDWoKel9LKefNhUW5i5KvYhEBDlBbTDx8Yhhy4Es";
+            
+        
+
+                    //    var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8NqhG3CnShfpfwVN" +
+                    // "EsN6gd8EWqt4+pHaQKNDrxFY+M2hRANCAASEtRLC6DPwemVTxf7FSskiu/p1EZ9n" +
+                    //  "pWGNXGhRkun7mSDzNr+Xx+0PIwg+KjBC9VGnwQ3h8gjeB31EZyF92hwU" ;
                 
               var signatureAlgorithm = GetEllipticCurveAlgorithm(privateKey);
 
@@ -86,7 +92,7 @@ namespace _dotNetSDK
 
         }
         
- async Task generatePaymentUrl(string id, string amount, string paymentReason, string successRedirectUrl, string failureRedirectUrl, string notifyUrl)
+ async Task generatePaymentUrl(string id, string amount, string paymentReason, string successRedirectUrl, string failureRedirectUrl, string notifyUrl,string phoneNumber ,string cancelRedirectUrl)
 
         {
            
@@ -96,13 +102,14 @@ namespace _dotNetSDK
 
             string SANTIMPAY_GATEWAY_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZU51bWJlciI6IisyNTE5MTAxMDEwMTAiLCJ3YWxsZXRJZCI6IjJkY2I0MzE0LTg0MTAtNDQ1YS05YjVlLTczNWE5YjE0OTZkZCIsInVzZXJJZCI6IjZkMjhhZmFiLTkzOWUtNGZjMC04Mzg1LTA4M2I2Zjc1ZTQwYSIsImRldmljZUlkIjoic2FtcG1tazIiLCJleHAiOjE2ODUwNzg2Mjd9.tJkcBi5FiSv9HDS1QLj0SsRxvvVbRFDaYHiVyx6no7w";
 
-            string GATEWAY_MERCHANT_ID = "9e2dab64-e2bb-4837-9b85-d855dd878d2b";
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
             
             string responsbody;
 
             var token = generateSignedToken("1", "coffee");
 
             request = new HttpRequestMessage(HttpMethod.Post, "https://services.santimpay.com/api/v1/gateway/initiate-payment");
+           
             var stringdata = JsonConvert.SerializeObject(new Datasend()
             {
                 id = id,
@@ -112,12 +119,19 @@ namespace _dotNetSDK
                 signedToken = token ,
                 successRedirectUrl = successRedirectUrl,
                 failureRedirectUrl = failureRedirectUrl,
-                notifyUrl = notifyUrl
+                notifyUrl = notifyUrl,
+                cancelRedirectUrl = cancelRedirectUrl,
+                phoneNumber = phoneNumber,
+                
             }); 
+
 
             var stringcontent = new StringContent(stringdata, Encoding.UTF8, "application/json");
 
+            
+
             request.Content = stringcontent;
+           
 
             List<NameValueHeaderValue> listheaders = new List<NameValueHeaderValue>();
            
@@ -131,21 +145,23 @@ namespace _dotNetSDK
                 request.Headers.Add(header.Name, header.Value);
             }
             
-            response = await client.SendAsync(request);
-             responsbody = await response.Content.ReadAsStringAsync();
+          
+             response = await client.SendAsync(request);
+            responsbody = await response.Content.ReadAsStringAsync();
+            string replacedUrl = responsbody.Replace("\\u0026", "&");
 
-           Console.WriteLine(responsbody);
+           Console.WriteLine(replacedUrl);
  }
 
  static async Task Main(string[] args)
         {
-            string PRIVATE_KEY =  "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8NqhG3CnShfpfwVN" +
-                                   "EsN6gd8EWqt4+pHaQKNDrxFY+M2hRANCAASEtRLC6DPwemVTxf7FSskiu/p1EZ9n" +
-                                    "pWGNXGhRkun7mSDzNr+Xx+0PIwg+KjBC9VGnwQ3h8gjeB31EZyF92hwU";
+          string PRIVATE_KEY = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQguL/LFhkFaMVbqJeP" +
+                     "vJ8N8oU98NQDBAY1WGc86ILT3tGhRANCAASqu+J41pkzEuCuznm4/Fnd9ZKwD7+z" +
+                     "tIupn5uBB+RJLrm7fDWoKel9LKefNhUW5i5KvYhEBDlBbTDx8Yhhy4Es";
 
             string SANTIMPAY_GATEWAY_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZU51bWJlciI6IisyNTE5MTAxMDEwMTAiLCJ3YWxsZXRJZCI6IjJkY2I0MzE0LTg0MTAtNDQ1YS05YjVlLTczNWE5YjE0OTZkZCIsInVzZXJJZCI6IjZkMjhhZmFiLTkzOWUtNGZjMC04Mzg1LTA4M2I2Zjc1ZTQwYSIsImRldmljZUlkIjoic2FtcG1tazIiLCJleHAiOjE2ODUwNzg2Mjd9.tJkcBi5FiSv9HDS1QLj0SsRxvvVbRFDaYHiVyx6no7w";
 
-            string GATEWAY_MERCHANT_ID = "9e2dab64-e2bb-4837-9b85-d855dd878d2b";
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
 
             // client side pages to redirect user to after payment is completed/failed
             string successRedirectUrl = "https://santimpay.com";
@@ -154,8 +170,14 @@ namespace _dotNetSDK
             // backend url to receive a status update (webhook)
             string notifyUrl = "https://santimpay.com";
 
+
+           //pass phone number for the payload
+            string phoneNumber = "";
+
+            string cancelRedirectUrl ="https://santimpay.com";
+
             // custom ID used by merchant to identify the payment
-            string id = "1";
+            string id = "5";
 
            SantimpaySdk Client = new SantimpaySdk(GATEWAY_MERCHANT_ID, SANTIMPAY_GATEWAY_TOKEN, PRIVATE_KEY);
 
@@ -163,7 +185,7 @@ namespace _dotNetSDK
      
            try
             {
-                await Client.generatePaymentUrl(id, "1", "coffee", successRedirectUrl, failureRedirectUrl, notifyUrl);
+                await Client.generatePaymentUrl(id, "1", "coffee", successRedirectUrl, failureRedirectUrl, notifyUrl,phoneNumber,cancelRedirectUrl);
                
                 }
             catch (Exception ex)
@@ -193,6 +215,9 @@ namespace _dotNetSDK
 
         public string failureRedirectUrl { get; set; }
         public string notifyUrl { get; set; }
+
+        public string cancelRedirectUrl { get; set; }
+        public string phoneNumber { get; set; }
     }
        
 

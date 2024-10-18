@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell Admin\\source\\repos\\_dotNetSDK\\_dotNetSDK\\_dotNetSDK.csproj": {}
+    "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell Admin\\source\\repos\\_dotNetSDK\\_dotNetSDK\\_dotNetSDK.csproj": {
+    "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell Admin\\source\\repos\\_dotNetSDK\\_dotNetSDK\\_dotNetSDK.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj",
         "projectName": "_dotNetSDK",
-        "projectPath": "C:\\Users\\Dell Admin\\source\\repos\\_dotNetSDK\\_dotNetSDK\\_dotNetSDK.csproj",
-        "packagesPath": "C:\\Users\\Dell Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell Admin\\source\\repos\\_dotNetSDK\\_dotNetSDK\\obj\\",
+        "projectPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dell Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +37,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -84,12 +92,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.17, 7.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
