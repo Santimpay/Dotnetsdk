@@ -68,13 +68,7 @@ namespace _dotNetSDK
                      "vJ8N8oU98NQDBAY1WGc86ILT3tGhRANCAASqu+J41pkzEuCuznm4/Fnd9ZKwD7+z" +
                      "tIupn5uBB+RJLrm7fDWoKel9LKefNhUW5i5KvYhEBDlBbTDx8Yhhy4Es";
             
-        
-
-                    //    var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg8NqhG3CnShfpfwVN" +
-                    // "EsN6gd8EWqt4+pHaQKNDrxFY+M2hRANCAASEtRLC6DPwemVTxf7FSskiu/p1EZ9n" +
-                    //  "pWGNXGhRkun7mSDzNr+Xx+0PIwg+KjBC9VGnwQ3h8gjeB31EZyF92hwU" ;
-                
-              var signatureAlgorithm = GetEllipticCurveAlgorithm(privateKey);
+             var signatureAlgorithm = GetEllipticCurveAlgorithm(privateKey);
 
             ECDsaSecurityKey eCDsaSecurityKey = new ECDsaSecurityKey(signatureAlgorithm);
 
@@ -91,8 +85,115 @@ namespace _dotNetSDK
 
 
         }
+
+       public  string generateSignedTokenforB2C(string amount, string paymentReason,string paymentMethod,string phoneNumber)
+        {
+           long Now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+           long now= Now/ 1000;
+           
+            var handler = new JsonWebTokenHandler();
+
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
+
+            var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQguL/LFhkFaMVbqJeP" +
+                     "vJ8N8oU98NQDBAY1WGc86ILT3tGhRANCAASqu+J41pkzEuCuznm4/Fnd9ZKwD7+z" +
+                     "tIupn5uBB+RJLrm7fDWoKel9LKefNhUW5i5KvYhEBDlBbTDx8Yhhy4Es";
+            
+                
+              var signatureAlgorithm = GetEllipticCurveAlgorithm(privateKey);
+
+            ECDsaSecurityKey eCDsaSecurityKey = new ECDsaSecurityKey(signatureAlgorithm);
+
+
+
+
+            string token = handler.CreateToken(new SecurityTokenDescriptor
+            {
+              Claims = new Dictionary<string, object> { { "amount", amount }, { "paymentreason", paymentReason },
+             { "merchantId", GATEWAY_MERCHANT_ID }, {"paymentMethod", paymentMethod},{"phoneNumber",phoneNumber},{ "generated", now } },
+                SigningCredentials = new SigningCredentials(eCDsaSecurityKey, "ES256")
+            });
+
+          return token;
+
+
+        }
+
+       public string  generateSignedTokenForGetTransaction(string id) {
+          long Now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+           long now= Now/ 1000;
+           
+            var handler = new JsonWebTokenHandler();
+
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
+
+            var privateKey ="MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQguL/LFhkFaMVbqJeP" +
+                     "vJ8N8oU98NQDBAY1WGc86ILT3tGhRANCAASqu+J41pkzEuCuznm4/Fnd9ZKwD7+z" +
+                     "tIupn5uBB+RJLrm7fDWoKel9LKefNhUW5i5KvYhEBDlBbTDx8Yhhy4Es";
+                
+              var signatureAlgorithm = GetEllipticCurveAlgorithm(privateKey);
+
+            ECDsaSecurityKey eCDsaSecurityKey = new ECDsaSecurityKey(signatureAlgorithm);
+
+
+
+
+            string token = handler.CreateToken(new SecurityTokenDescriptor
+            {
+              Claims = new Dictionary<string, object> { { "id", id }, { "merId", GATEWAY_MERCHANT_ID },
+             { "generated", now } },
+                SigningCredentials = new SigningCredentials(eCDsaSecurityKey, "ES256")
+            });
+
+          return token;
+
+  }
+
+
+
+
+  async Task SendToCustomer(string id,string amount,string paymentReason,string phoneNumber,string paymentMethod,string notifyUrl)
+   {
+    HttpRequestMessage request;
+            HttpResponseMessage response;
+            client = new HttpClient();
+
+           
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
+            
+            string responsbody;
+
+            var token = generateSignedTokenforB2C("1", "coffee",paymentMethod, phoneNumber);
+
+            request = new HttpRequestMessage(HttpMethod.Post, "https://services.santimpay.com/api/v1/gateway/payout-transfer");
+           
+            var stringdata = JsonConvert.SerializeObject(new Datasend()
+            {
+                id = id,
+                clientReference=id,
+                amount = amount,
+                reason = paymentReason,
+                merchantId = GATEWAY_MERCHANT_ID,
+                signedToken = token ,
+                receiverAccountNumber = phoneNumber,
+                notifyUrl = notifyUrl,
+                paymentMethod=paymentMethod
+                
+            }); 
+
+
+            var stringcontent = new StringContent(stringdata, Encoding.UTF8, "application/json");
+             request.Content = stringcontent;
+             response = await client.SendAsync(request);
+            responsbody = await response.Content.ReadAsStringAsync();
+            
+
+           Console.WriteLine(responsbody);
+}
+  
+
         
- async Task generatePaymentUrl(string id, string amount, string paymentReason, string successRedirectUrl, string failureRedirectUrl, string notifyUrl,string phoneNumber ,string cancelRedirectUrl)
+ async Task GeneratePaymentUrl(string id, string amount, string paymentReason, string successRedirectUrl, string failureRedirectUrl, string notifyUrl,string phoneNumber ,string cancelRedirectUrl)
 
         {
            
@@ -153,6 +254,61 @@ namespace _dotNetSDK
            Console.WriteLine(replacedUrl);
  }
 
+
+async Task CheckTransactionStatus(string id)
+{
+    HttpRequestMessage request;
+            HttpResponseMessage response;
+            client = new HttpClient();
+
+           
+            string GATEWAY_MERCHANT_ID = "0f3a95d6-958d-457f-9031-dde2dad9ee17";
+            
+            string responsbody;
+
+            var token = generateSignedTokenForGetTransaction(id);
+
+            request = new HttpRequestMessage(HttpMethod.Post, "https://services.santimpay.com/api/v1/gateway/fetch-transaction-status");
+           
+            var stringdata = JsonConvert.SerializeObject(new Datasend()
+            {
+                id = id,
+               merchantId=GATEWAY_MERCHANT_ID,
+               signedToken= token
+               
+                
+            }); 
+
+
+            var stringcontent = new StringContent(stringdata, Encoding.UTF8, "application/json");
+
+            
+
+            request.Content = stringcontent;
+           
+
+            // List<NameValueHeaderValue> listheaders = new List<NameValueHeaderValue>();
+           
+            // listheaders.Add(new NameValueHeaderValue("Accept","application/json"));
+           
+
+            // listheaders.Add(new NameValueHeaderValue("Authorization", $"Bearer {SANTIMPAY_GATEWAY_TOKEN}"));
+
+            // foreach (var header in listheaders)
+            // {
+            //     request.Headers.Add(header.Name, header.Value);
+            // }
+            
+          
+             response = await client.SendAsync(request);
+            responsbody = await response.Content.ReadAsStringAsync();
+         
+
+           Console.WriteLine(responsbody);
+}
+
+
+
  static async Task Main(string[] args)
         {
           string PRIVATE_KEY = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQguL/LFhkFaMVbqJeP" +
@@ -174,24 +330,50 @@ namespace _dotNetSDK
            //pass phone number for the payload
             string phoneNumber = "";
 
+            string paymentMethod = "";
+
             string cancelRedirectUrl ="https://santimpay.com";
 
             // custom ID used by merchant to identify the payment
-            string id = "5";
+            string id = "50";
 
            SantimpaySdk Client = new SantimpaySdk(GATEWAY_MERCHANT_ID, SANTIMPAY_GATEWAY_TOKEN, PRIVATE_KEY);
 
            var token = Client.generateSignedToken("1", "coffee");
      
+
            try
             {
-                await Client.generatePaymentUrl(id, "1", "coffee", successRedirectUrl, failureRedirectUrl, notifyUrl,phoneNumber,cancelRedirectUrl);
+                await Client.GeneratePaymentUrl(id, "1", "coffee", successRedirectUrl, failureRedirectUrl, notifyUrl,phoneNumber,cancelRedirectUrl);
                
                 }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
+
+            //   try
+            // {
+            //     await Client.SendToCustomer(id, "1", "coffee",phoneNumber , paymentMethod, notifyUrl);
+               
+            //     }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine(ex.Message);
+            // }
+
+
+
+            //   try
+            // {
+            //     await Client.CheckTransactionStatus(id);
+               
+            //     }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine(ex.Message);
+            // }
 
 
      }
@@ -218,10 +400,14 @@ namespace _dotNetSDK
 
         public string cancelRedirectUrl { get; set; }
         public string phoneNumber { get; set; }
-    }
-       
 
+        public string clientReference { get; set; }
+
+        public string receiverAccountNumber { get; set; }
+
+        public string paymentMethod { get; set; }
     }
+        }
 
 
 

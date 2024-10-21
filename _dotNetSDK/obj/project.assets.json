@@ -6201,11 +6201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotNetSDK\\_dotNetSDK.csproj",
       "projectName": "_dotNetSDK",
-      "projectPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\_dotNetSDK.csproj",
+      "projectPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotNetSDK\\_dotNetSDK.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotnetsdk\\obj\\",
+      "outputPath": "C:\\Users\\pc\\Desktop\\Santimpay\\DotnetSDKnew\\_dotNetSDK\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
